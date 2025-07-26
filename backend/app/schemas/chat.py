@@ -18,9 +18,9 @@ class ChatRequest(BaseModel):
     """
     ユーザーからのチャットリクエスト
     """
-    message: str
-    conversation_id: Optional[UUID] = None
-    metadata: Optional[Dict[str, Any]] = None
+    message: str = Field(..., description="ユーザーからのメッセージ、空やデフォルト値は使用できません", example="キャリアについて相談したいです")
+    conversation_id: Optional[UUID] = Field(None, description="会話ID、新規会話の場合はNull")
+    metadata: Optional[Dict[str, Any]] = Field(default={}, description="追加メタデータ情報")
 
 
 class ChatResponse(BaseModel):
@@ -29,6 +29,7 @@ class ChatResponse(BaseModel):
     """
     message: str
     conversation_id: UUID
+    messages: Optional[List[ChatMessage]] = None
     metadata: Optional[Dict[str, Any]] = None
 
 

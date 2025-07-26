@@ -1,5 +1,5 @@
 from typing import Dict, List, Optional, Any
-from uuid import UUID, uuid4
+from uuid import UUID
 from datetime import datetime
 from app.schemas.chat import ChatMessage, Conversation
 from app.services.agent import process_message
@@ -7,6 +7,13 @@ from app.services.agent import process_message
 # 会話を保存するためのインメモリストレージ
 # 実際のアプリケーションではデータベースを使用することを推奨
 conversations: Dict[UUID, Conversation] = {}
+
+
+async def get_all_conversation_ids() -> List[UUID]:
+    """
+    メモリに保存されている全ての会話IDを取得する
+    """
+    return list(conversations.keys())
 
 
 async def get_conversation(conversation_id: UUID) -> Optional[Conversation]:
