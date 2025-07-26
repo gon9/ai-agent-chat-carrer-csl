@@ -6,11 +6,11 @@ WORKDIR /app
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir uv
 
-# ソースコードをコピー
-COPY requirements.txt .
+# プロジェクト定義ファイルをコピー
+COPY pyproject.toml uv.lock ./
 
-# 依存関係をインストール
-RUN uv pip install --system -r requirements.txt
+# pyproject.tomlとuv.lockから正確な依存関係をインストール
+RUN uv pip install --system .
 
 # ソースコードをコピー
 COPY . .
