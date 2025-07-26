@@ -38,6 +38,12 @@ env/
 .DS_Store?
 ._*
 .Spotlight-V100
+
+# Next.js
+.next/
+node_modules/
+out/
+.vercel/
 .Trashes
 ehthumbs.db
 Thumbs.db
